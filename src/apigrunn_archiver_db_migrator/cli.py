@@ -2,7 +2,8 @@
 
 Exit codes: 0 migrated (with ``--dry-run``: would migrate), 1 the migrated
 archive failed verification and was thrown away, 2 usage error or refused.
-In every case but 0 without ``--dry-run``, nothing was written.
+In every case but 0 without ``--dry-run``, nothing was written. 3 means the
+tool crashed, which is a bug (see :mod:`.bugreport`).
 """
 
 from __future__ import annotations
@@ -10,17 +11,20 @@ from __future__ import annotations
 import argparse
 import logging
 import sys
+import traceback
 from collections.abc import Sequence
 
 from apigrunn_archiver import __version__ as archiver_version
 from apigrunn_archiver import default_db_path
 
+from . import bugreport
 from ._version import __version__
 from .errors import MigratorError, VerificationError
 from .migration import TARGET_SCHEMA, MigrationResult, dry_run, migrate, migrate_in_place
 
 EXIT_VERIFY_FAILED = 1
 EXIT_REFUSED = 2
+EXIT_CRASHED = 3
 
 
 def _parser() -> argparse.ArgumentParser:
@@ -58,6 +62,13 @@ def _parser() -> argparse.ArgumentParser:
         help="discard HTML returned only by error responses, which 0.2.0 does not keep "
         "(default: keep it)",
     )
+    parser.add_argument(
+        "--report-bugs",
+        action=argparse.BooleanOptionalAction,
+        help="if this tool crashes, send an anonymous bug report without asking "
+        f"(--no-report-bugs: never send or ask; default: ${bugreport.OPT_IN_ENV}, "
+        "else ask when run in a terminal)",
+    )
     return parser
 
 
@@ -67,6 +78,28 @@ def main(argv: Sequence[str] | None = None) -> int:
         level=logging.INFO if args.verbose else logging.ERROR,
         format="%(levelname)s: %(message)s",
     )
+
+    try:
+        return _run(args)
+    except Exception as exc:  # noqa: BLE001 - anything else is a bug
+        traceback.print_exception(exc)
+        print("error: apigrunn-archiver-db-migrator crashed; this is a bug", file=sys.stderr)
+        bugreport.handle_crash(
+            exc,
+            opt_in=args.report_bugs,
+            mode=_mode(args),
+            drop_error_bodies=args.drop_error_bodies,
+        )
+        return EXIT_CRASHED
+
+
+def _mode(args: argparse.Namespace) -> str:
+    if args.dry_run:
+        return "dry-run"
+    return "in-place" if args.in_place else "output"
+
+
+def _run(args: argparse.Namespace) -> int:
     source = args.source or default_db_path()
 
     try:

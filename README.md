@@ -38,7 +38,7 @@ migrated ~/.local/share/apigrunn-archiver/archive.db (schema 2, apigrunn-archive
 ```
 
 Exit codes: 0 migrated, 1 the result failed verification (nothing written), 2 refused
-or usage error (nothing written).
+or usage error (nothing written), 3 crashed (a bug, see [Bug reports](#bug-reports)).
 
 ```python
 from apigrunn_archiver_db_migrator import migrate, migrate_in_place, dry_run
@@ -46,6 +46,21 @@ from apigrunn_archiver_db_migrator import migrate, migrate_in_place, dry_run
 result = migrate("archive.db", "archive-v3.db")
 result.parse_errors, result.index_mismatches   # anything worth a look
 ```
+
+## Bug reports
+
+If the migrator crashes (exit code 3), it can send an anonymous bug report. It is opt-in:
+
+- `--report-bugs` or `APIGRUNN_MIGRATOR_REPORT_BUGS=1`: send without asking.
+- `--no-report-bugs` or `APIGRUNN_MIGRATOR_REPORT_BUGS=0`: never send, never ask.
+- Otherwise it shows the exact report and asks, but only when run in a terminal.
+  In scripts and CI nothing is sent.
+
+A report holds the migrator's and apigrunn-archiver's versions, the Python version,
+OS and CPU architecture, the mode (`output`, `in-place` or `dry-run`), the exception's
+type, and the module, function and line number of each frame of its traceback. It
+never holds the exception's message, file paths, URLs or anything read from an
+archive. Refusals and failed verifications are not bugs and are never reported.
 
 ## Safety
 
