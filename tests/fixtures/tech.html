@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tech Conference | aiGrunn</title>
+  <meta name="description" content="The heart of aiGrunn. Deep AI talks on architecture, MLOps, agents, security and more. Get your tickets and catch up on 3 years of talks." />
+  <link rel="canonical" href="https://aigrunn.org/tech" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="aiGrunn" />
+  <meta property="og:url" content="https://aigrunn.org/tech" />
+  <meta property="og:title" content="Tech Conference | aiGrunn" />
+  <meta property="og:description" content="The heart of aiGrunn. Deep AI talks on architecture, MLOps, agents, security and more. November 13, 2026 · Forum Groningen." />
+  <meta property="og:image" content="https://aigrunn.org/assets/backgrounds/og-tech.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tech Conference | aiGrunn" />
+  <meta name="twitter:description" content="The heart of aiGrunn. Deep AI talks on architecture, MLOps, agents, security and more." />
+  <meta name="twitter:image" content="https://aigrunn.org/assets/backgrounds/og-tech.jpg" />
+  <link rel="icon" href="/assets/favicon%20aigrunn.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/assets/favicon%20aigrunn.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Open+Sans:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" /></noscript>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    function loadGA() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-FZP4JLJYES';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('config', 'G-FZP4JLJYES');
+    }
+    if (localStorage.getItem('cookie_consent') === 'accepted') { loadGA(); }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #F4F3EF;
+      --surface:      #f5f5f7;
+      --surface-el:   #ececf0;
+      --border:       rgba(0,0,0,0.08);
+      --accent:       #f97316;
+      --track:        #d54646;
+      --track-ink:    #d03131;
+      --text:         #0a0a0f;
+      --text-2:       #585958;
+      --nav-bg:       rgba(244,243,239,0.92);
+      --nav-border:   rgba(0,0,0,0.08);
+      --font-head:    'DM Sans', sans-serif;
+      --font-body:    'Open Sans', sans-serif;
+      --radius:       12px;
+      --radius-lg:    20px;
+      --radius-xl:    28px;
+    }
+
+    [data-theme="dark"] {
+      --bg:           #0a0a0f;
+      --surface:      #111118;
+      --surface-el:   #1a1a24;
+      --border:       rgba(255,255,255,0.08);
+      --accent:       #f97316;
+      --track-ink:    #d35252;
+      --text:         #f8f8f2;
+      --text-2:       #9ca3af;
+      --nav-bg:       rgba(10,10,15,0.85);
+      --nav-border:   rgba(255,255,255,0.06);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section { padding: 96px 0; }
+
+    .label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--track-ink);
+      margin-bottom: 16px;
+    }
+
+    .display { font-family: var(--font-head); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+    .h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
+
+    .body-lg { font-size: 1.05rem; line-height: 1.75; color: var(--text-2); }
+    .body-sm { font-size: 0.9rem; color: var(--text-2); line-height: 1.6; }
+
+    /* ── Scroll Reveal ── */
+    .reveal       { opacity: 0; transform: translateY(44px); }
+    .reveal-scale { opacity: 0; transform: scale(0.86) translateY(24px); }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal {
+        transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1),
+                    transform 0.85s cubic-bezier(0.16,1,0.3,1);
+      }
+      .reveal-scale {
+        transition: opacity 0.6s cubic-bezier(0.34,1.56,0.64,1),
+                    transform 0.6s cubic-bezier(0.34,1.56,0.64,1);
+      }
+      .reveal.visible, .reveal-scale.visible { opacity: 1; transform: none; }
+      .delay-1 { transition-delay: 0.08s; }
+      .delay-2 { transition-delay: 0.16s; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal-scale { opacity: 1; transform: none; }
+    }
+
+    /* ── Nav ── */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--nav-border);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: box-shadow 0.3s ease, background 0.3s ease;
+    }
+    #nav.scrolled {
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      height: 68px;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .nav-logo img { height: 28px; width: auto; display: block; }
+    .nav-logo .logo-dark  { display: none; }
+    [data-theme="dark"] .nav-logo .logo-light { display: none; }
+    [data-theme="dark"] .nav-logo .logo-dark  { display: block; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      list-style: none;
+      flex: 1;
+      justify-content: center;
+    }
+    .nav-links a {
+      padding: 6px 10px;
+      border-radius: 7px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      white-space: nowrap;
+      color: var(--text-2);
+      transition: color 0.2s ease, background 0.2s ease;
+    }
+    .nav-links a:hover { color: var(--text); background: var(--surface); }
+    .nav-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    /* ── Upcoming events dropdown ── */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 700;
+      white-space: nowrap;
+      color: var(--accent);
+      background: none;
+      border: 1.5px solid var(--accent);
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .nav-dropdown-toggle .chev { transition: transform 0.2s ease; }
+    .nav-dropdown:hover .nav-dropdown-toggle,
+    .nav-dropdown:focus-within .nav-dropdown-toggle { background: var(--accent); color: #fff; }
+    .nav-dropdown:hover .chev,
+    .nav-dropdown:focus-within .chev { transform: rotate(180deg); }
+    .nav-dropdown-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .nav-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-top: 10px;
+      transform: translateX(-50%) translateY(-6px);
+      min-width: 280px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.16);
+      padding: 8px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 1100;
+    }
+    .nav-dropdown-menu::before {
+      content: '';
+      position: absolute;
+      top: -12px; left: 0; right: 0; height: 12px;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown:focus-within .nav-dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+    .nav-dropdown-menu .ev-head {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      padding: 6px 12px 8px;
+    }
+    .nav-dropdown-menu a {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 9px;
+      white-space: nowrap;
+    }
+    .nav-dropdown-menu a:hover { background: var(--surface); }
+    .nav-dropdown-menu .ev-date {
+      flex-shrink: 0;
+      min-width: 72px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      color: var(--accent);
+    }
+    .nav-dropdown-menu .ev-name { font-size: 0.92rem; font-weight: 600; color: var(--text); }
+    .nav-dropdown-menu .ev-place { display: block; font-size: 0.78rem; font-weight: 400; color: var(--text-2); margin-top: 2px; }
+    .mobile-events-head {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding: 16px 0 4px;
+    }
+    .mobile-menu a .m-ev-date { font-weight: 700; color: var(--accent); margin-right: 8px; }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px; height: 38px;
+      border-radius: 9px;
+      background: var(--surface);
+      color: var(--text-2);
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+    .theme-toggle:hover { background: var(--surface-el); color: var(--text); transform: rotate(12deg); }
+    .theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      width: 36px; height: 36px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: var(--surface);
+    }
+    .hamburger span {
+      display: block;
+      width: 18px; height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      background: var(--nav-bg);
+      border-top: 1px solid var(--border);
+      padding: 12px 24px 24px;
+      backdrop-filter: blur(12px);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      padding: 12px 0;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    @media (max-width: 1280px) {
+      .nav-links { display: none; }
+      .nav-right .btn { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s ease, transform 0.15s ease;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-lg { padding: 14px 32px; font-size: 1rem; border-radius: 10px; }
+
+    /* ── Tech Hero ── */
+    .tech-hero {
+      position: relative;
+      min-height: 540px;
+      padding-top: 68px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* The track's own colour and the aiGrunn triangle pattern, the same
+       combination as the Tech card on the front page. */
+    .tech-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-color: var(--track);
+      background-image: url('assets/tracks/aigrunn-pattern.svg');
+      background-size: 116px 174px;
+      z-index: 0;
+    }
+
+    /* Dark behind the glass card, clearing towards the right so the pattern
+       and the mascot come through at full strength. */
+    .tech-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(100deg, rgba(10,10,15,0.74) 0%, rgba(10,10,15,0.52) 44%, rgba(10,10,15,0.16) 80%, rgba(10,10,15,0.08) 100%);
+      z-index: 1;
+    }
+    [data-theme="dark"] .tech-hero-overlay {
+      background: linear-gradient(100deg, rgba(10,10,15,0.88) 0%, rgba(10,10,15,0.70) 44%, rgba(10,10,15,0.34) 80%, rgba(10,10,15,0.24) 100%);
+    }
+
+    /* Same mascot as the Tech card on the front page. Aligned to the
+       container so it never drifts away from the text. */
+    .tech-hero-mascot {
+      position: absolute;
+      right: max(24px, calc((100% - 1160px) / 2));
+      bottom: 0;
+      height: 92%;
+      max-height: 500px;
+      width: auto;
+      /* Shrinks itself once the 640px glass card stops leaving room, so the
+         two never overlap. */
+      max-width: calc(100% - 720px);
+      object-fit: contain;
+      object-position: bottom right;
+      z-index: 1;
+      pointer-events: none;
+      filter: drop-shadow(0 20px 44px rgba(0,0,0,0.38));
+    }
+
+    .tech-hero .container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding-top: 72px;
+      padding-bottom: 72px;
+    }
+
+    .tech-hero-glass {
+      background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: var(--radius-xl);
+      padding: 48px;
+      max-width: 640px;
+    }
+
+    .tech-hero-glass .label { color: rgba(255,255,255,0.72); }
+
+    .tech-hero-glass h1 {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .tech-hero-glass p {
+      color: rgba(255,255,255,0.82);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .tech-hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .event-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(249,115,22,0.22);
+      color: var(--accent);
+      border: 1.5px solid rgba(249,115,22,0.35);
+      backdrop-filter: blur(8px);
+      padding: 8px 18px;
+      border-radius: 100px;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    .venue-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.15);
+      border: 1.5px solid rgba(255,255,255,0.25);
+      backdrop-filter: blur(8px);
+      color: rgba(255,255,255,0.8);
+      padding: 8px 18px;
+      border-radius: 100px;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    /* ── Track champion credit ──
+       Generic names on purpose: the same block and CSS drop into any other
+       track page once that track has its sponsor. */
+    .track-sponsor {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.16);
+    }
+
+    .track-sponsor-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.72);
+    }
+
+    .track-sponsor-logos {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Each logo gets its own plate so the brand colours stay legible against
+       the dark hero glass. White suits most of them; sponsors that only
+       publish an on-dark logo get a plate in their own brand colour. */
+    .track-sponsor-logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 8px 22px;
+      height: 64px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.22);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .track-sponsor-logo:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.3);
+    }
+    .track-sponsor-logo img {
+      height: 46px;
+      width: auto;
+      display: block;
+    }
+    /* A stacked mark is far taller than a wordmark, so it needs a touch more
+       height to carry the same optical weight. */
+    .track-sponsor-logo.is-stacked { padding: 7px 18px; }
+    .track-sponsor-logo.is-stacked img { height: 50px; }
+
+    @media (max-width: 940px) {
+      .tech-hero-mascot { display: none; }
+    }
+    @media (max-width: 640px) {
+      .tech-hero-glass { padding: 32px 24px; }
+    }
+    @media (max-width: 480px) {
+      .track-sponsor { flex-direction: column; align-items: flex-start; gap: 14px; }
+    }
+
+    /* ── Tickets ── */
+    #tickets { background: var(--bg); }
+
+    .section-head { margin-bottom: 48px; }
+    .section-head.centered { text-align: center; }
+
+    .paylogic-wrap {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      max-width: 640px;
+      margin: 0 auto;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+
+    .paylogic-wrap iframe {
+      display: block;
+      width: 100%;
+      border: none;
+    }
+
+    /* ── Touch devices: link out instead of embedding ─────────
+       On Chrome for Android the tap reaches the shop's iframe, but the click that
+       follows arrives shifted by the iframe's offset on the page, so every button
+       inside the embedded shop misses its target and the checkout is unusable.
+       The same shop behaves correctly as its own page, so coarse-pointer devices
+       are sent straight there. No reveal class on the link on purpose: a missed
+       IntersectionObserver would leave the only buy button invisible.
+    ───────────────────────────────────────── */
+    .shop-link { display: none; text-align: center; }
+    .shop-link .btn { width: 100%; max-width: 420px; justify-content: center; }
+    .shop-link p {
+      font-size: 0.85rem;
+      color: var(--text-2);
+      margin-top: 14px;
+    }
+    @media (pointer: coarse) {
+      .paylogic-wrap { display: none; }
+      .shop-link { display: block; }
+    }
+
+    .tickets-footnote {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-2);
+      margin-top: 24px;
+      padding: 16px 24px;
+      background: rgba(249,115,22,0.06);
+      border: 1px solid rgba(249,115,22,0.14);
+      border-radius: var(--radius);
+    }
+
+    /* ── Past Talks ── */
+    #talks { background: var(--bg); overflow: hidden; }
+
+    .talks-year-group { margin-bottom: 48px; }
+    .talks-year-group:last-child { margin-bottom: 0; }
+
+    .talks-year-header {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 18px;
+    }
+
+    .talks-year-badge {
+      font-family: var(--font-head);
+      font-size: 1rem; font-weight: 700; letter-spacing: -0.02em;
+      padding: 5px 16px; border-radius: 100px; color: #fff;
+    }
+    .talks-year-badge.y2025 { background: var(--accent); }
+    .talks-year-badge.y2024 { background: #7c3aed; }
+    .talks-year-badge.y2023 { background: #0d9488; }
+
+    .talks-year-count { font-size: 0.85rem; color: var(--text-2); }
+
+    .lane-arrows { display: flex; gap: 8px; margin-left: auto; }
+    .lane-arrow {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background 0.18s ease, border-color 0.18s ease, opacity 0.18s ease, transform 0.18s ease;
+      flex-shrink: 0;
+    }
+    .lane-arrow svg { display: block; }
+    .lane-arrow:hover { background: var(--surface-el); border-color: var(--accent); transform: scale(1.08); }
+    .lane-arrow:active { transform: scale(0.94); }
+    .lane-arrow:disabled { opacity: 0.25; cursor: default; transform: none; }
+
+    .talks-lane-wrap {
+      overflow: clip;
+      width: calc(100% + 48px);
+      margin-left: -24px;
+    }
+    .talks-lane {
+      display: flex; gap: 16px;
+      overflow-x: auto; width: 100%;
+      padding: 0 24px 2px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      user-select: none;
+      scroll-behavior: smooth;
+    }
+    .talks-lane::-webkit-scrollbar { display: none; }
+
+    .talk-card {
+      flex: 0 0 260px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      text-decoration: none; color: inherit;
+      cursor: pointer;
+      transition: box-shadow 0.3s ease;
+    }
+    .talk-card:hover { box-shadow: 0 20px 48px rgba(0,0,0,0.18); }
+
+    .talk-thumb { width: 100%; aspect-ratio: 16/9; overflow: hidden; position: relative; }
+    .talk-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.45s ease; }
+    .talk-card:hover .talk-thumb img { transform: scale(1.06); }
+
+    .talk-thumb-overlay {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.28);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.25s ease;
+    }
+    .talk-card:hover .talk-thumb-overlay { opacity: 1; }
+    .play-icon {
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .talk-info { padding: 14px 16px 16px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
+    .talk-title {
+      font-family: var(--font-head); font-weight: 600; font-size: 0.9rem;
+      color: var(--text); line-height: 1.4; flex: 1;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .talk-speaker { font-size: 0.78rem; color: var(--text-2); font-weight: 500; }
+
+    .talk-tooltip {
+      position: fixed; z-index: 9999; width: 300px;
+      background: var(--surface-el);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.28), 0 4px 16px rgba(0,0,0,0.12);
+      pointer-events: none;
+      opacity: 0; transform: scale(0.94) translateY(6px);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    }
+    .talk-tooltip.visible { opacity: 1; transform: scale(1) translateY(0); }
+    .talk-tooltip-title { font-family: var(--font-head); font-weight: 700; font-size: 0.9rem; color: var(--text); margin-bottom: 8px; line-height: 1.3; }
+    .talk-tooltip-speaker { font-size: 0.75rem; font-weight: 600; color: var(--accent); margin-bottom: 10px; }
+    .talk-tooltip-desc { font-size: 0.78rem; color: var(--text-2); line-height: 1.65; display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; overflow: hidden; }
+
+    /* ── RFP ── */
+    #rfp {
+      background: var(--surface);
+      position: relative;
+      overflow: hidden;
+    }
+    #rfp-bg-img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 60%;
+      transform: scaleX(-1);
+      opacity: 0.12;
+      pointer-events: none;
+      z-index: 0;
+    }
+    [data-theme="dark"] #rfp-bg-img { opacity: 0.18; }
+    #rfp .container { position: relative; z-index: 1; }
+
+    .rfp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .rfp-callout {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+    }
+
+    .rfp-callout-title {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rfp-callout-title::before {
+      content: '📋';
+      font-size: 1.2rem;
+    }
+
+    .rfp-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .rfp-list li {
+      font-size: 0.9rem;
+      color: var(--text-2);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.5;
+    }
+
+    .rfp-list li::before {
+      content: '→';
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .reveal-left  { opacity: 0; transform: translateX(-60px); }
+    .reveal-right { opacity: 0; transform: translateX(60px); }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal-left, .reveal-right {
+        transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1),
+                    transform 0.85s cubic-bezier(0.16,1,0.3,1);
+      }
+      .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal-left, .reveal-right { opacity: 1; transform: none; }
+    }
+
+    @media (max-width: 800px) { .rfp-grid { grid-template-columns: 1fr; gap: 36px; } }
+
+    /* ── Footer ── */
+    #footer {
+      background: var(--surface);
+      padding: 64px 0 0;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand .nav-logo { margin-bottom: 12px; }
+    .footer-brand .nav-logo img { height: 36px; }
+    .footer-brand p { font-size: 0.9rem; color: var(--text-2); max-width: 240px; }
+    .footer-col h3 {
+      font-family: var(--font-head);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      margin-bottom: 16px;
+    }
+    .footer-links {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 32px;
+    }
+    .footer-links a {
+      font-size: 0.9rem;
+      color: var(--text-2);
+      transition: color 0.2s ease;
+    }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-contact { margin-left: 48px; }
+    .footer-contact p {
+      font-size: 0.9rem;
+      color: var(--text-2);
+      line-height: 1.8;
+    }
+    .footer-contact a:hover { color: var(--accent); }
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding: 20px 0;
+      text-align: center;
+      font-size: 0.825rem;
+      color: var(--text-2);
+    }
+    @media (max-width: 760px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-contact { margin-left: 0; }
+    }
+
+    /* ── Cookie Banner ── */
+    #cookie-banner {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9000;
+      background: var(--surface-el);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      max-width: 520px;
+      width: calc(100% - 48px);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    #cookie-banner.hidden { display: none; }
+    #cookie-banner p { font-size: 0.9rem; color: var(--text-2); }
+    #cookie-banner a { color: var(--accent); text-decoration: underline; }
+    .cookie-actions { display: flex; gap: 10px; justify-content: flex-end; }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--text);
+      padding: 9px 20px;
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.2s ease;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="assets/logos/logo%20black.png" class="logo-light" alt="aiGrunn" />
+        <img src="assets/logos/aigrunn%20logo%20white.png" class="logo-dark"  alt="aiGrunn" />
+      </a>
+      <ul class="nav-links">
+        <li class="nav-dropdown">
+          <button class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            Upcoming events
+            <svg class="chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="nav-dropdown-menu" role="menu">
+            <div class="ev-head">Upcoming events</div>
+            <a href="/#lutje-ailand" role="menuitem">
+              <span class="ev-date">Sep 22</span>
+              <span class="ev-name">Lutje aiLand<span class="ev-place">Niemeyer, Groningen</span></span>
+            </a>
+            <a href="/#hackathon" role="menuitem">
+              <span class="ev-date">Nov 11–12</span>
+              <span class="ev-name">aiGrunn Hackathon<span class="ev-place">Niemeyer, Groningen</span></span>
+            </a>
+            <a href="/#tickets" role="menuitem">
+              <span class="ev-date">Nov 13</span>
+              <span class="ev-name">aiGrunn Conference<span class="ev-place">Groningen city center</span></span>
+            </a>
+            <a href="/#tickets" role="menuitem">
+              <span class="ev-date">May 28</span>
+              <span class="ev-name">aiGrunn Conference<span class="ev-place">Groningen city center · 2027</span></span>
+            </a>
+          </div>
+        </li>
+        <li><a href="/#tracks">Tracks</a></li>
+        <li><a href="/#tickets">Tickets</a></li>
+        <li><a href="/#ailand">aiLand</a></li>
+        <li><a href="/#sponsors">Sponsors</a></li>
+        <li><a href="#rfp">RFP</a></li>
+        <li><a href="/#gallery">Gallery</a></li>
+        <li><a href="/#cafe">aiGrunn Café</a></li>
+        <li><a href="/#hackathon">Hackathon</a></li>
+        <li><a href="/schedule">Schedule</a></li>
+        <li><a href="/podcast">Podcast</a></li>
+        <li><a href="/sponsoring">Sponsoring</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <svg id="iconSun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg id="iconMoon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <a href="/#tickets" class="btn btn-primary btn-sm">Get tickets</a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-events-head">Upcoming events</div>
+      <a href="/#lutje-ailand"><span class="m-ev-date">Sep 22</span>Lutje aiLand</a>
+      <a href="/#hackathon"><span class="m-ev-date">Nov 11–12</span>aiGrunn Hackathon</a>
+      <a href="/#tickets"><span class="m-ev-date">Nov 13</span>aiGrunn Conference</a>
+      <a href="/#tickets"><span class="m-ev-date">May 28</span>aiGrunn Conference 2027</a>
+      <a href="/#tracks">Tracks</a>
+      <a href="/#tickets">Tickets</a>
+      <a href="/#ailand">aiLand</a>
+      <a href="/#sponsors">Sponsors</a>
+      <a href="#rfp">RFP</a>
+      <a href="/#gallery">Gallery</a>
+      <a href="/#cafe">aiGrunn Café</a>
+      <a href="/schedule">Schedule</a>
+      <a href="/podcast">Podcast</a>
+      <a href="/sponsoring">Sponsoring</a>
+      <a href="/#tickets" style="color:var(--accent); font-weight:700;">Get tickets →</a>
+    </div>
+  </nav>
+
+  <!-- ── Tech Hero ── -->
+  <section class="tech-hero">
+    <div class="tech-hero-bg" aria-hidden="true"></div>
+    <div class="tech-hero-overlay" aria-hidden="true"></div>
+    <img class="tech-hero-mascot" src="assets/tracks/mascottes/mascot_tech.png" alt="" aria-hidden="true" />
+    <div class="container">
+      <div class="tech-hero-glass">
+        <div class="label">The Heart of aiGrunn</div>
+        <h1>Tech track</h1>
+        <p>aiGrunn started as a developer conference, and the tech track is still its heartbeat. Deep dives into AI architecture, machine learning, MLOps, agents, open-source tooling, security, and the code that actually runs in production. Practitioner-led. No sales pitches. Just the real thing.</p>
+        <div class="tech-hero-badges">
+          <span class="event-badge">📅 November 13, 2026</span>
+          <span class="venue-badge">📍 Groningen city center</span>
+        </div>
+        <div class="track-sponsor">
+          <span class="track-sponsor-label">Track champion</span>
+          <div class="track-sponsor-logos">
+            <a class="track-sponsor-logo" href="https://www.stekz.com/nl" target="_blank" rel="noopener">
+              <img src="assets/logos/stekz-logo.png" alt="Stekz" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Tickets ── -->
+  <section id="tickets" class="section">
+    <div class="container">
+      <div class="section-head centered reveal">
+        <div class="label">Tickets</div>
+        <h2 class="display h2">Join the party</h2>
+      </div>
+      <div class="paylogic-wrap reveal-scale delay-1">
+        <iframe
+          scrolling="auto"
+          height="650"
+          src="https://shop.paylogic.com/ee3395d269a74b05be9445e1f52c35f2"
+          name="paylogic_shop"
+          id="paylogic_shop"
+          title="aiGrunn 2026 tickets">
+        </iframe>
+      </div>
+      <div class="shop-link">
+        <a class="btn btn-primary btn-lg" href="https://shop.paylogic.com/ee3395d269a74b05be9445e1f52c35f2">Buy tickets for the aiGrunn Conference on November 13 →</a>
+        <p>Opens the secure Paylogic ticket shop.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RFP ── -->
+  <section id="rfp" class="section">
+    <img id="rfp-bg-img" src="assets/backgrounds/RFP%20background.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+    <div class="container">
+      <div class="rfp-grid">
+        <div class="reveal-left">
+          <div class="label" style="margin-bottom:16px;">Call for proposals</div>
+          <h2 class="display h2" style="margin-bottom:20px;">Share your tech expertise with the North.</h2>
+          <p class="body-lg" style="margin-bottom:16px;">aiGrunn is a unique stage for developers, researchers, practitioners and thinkers. If you have something worth saying, we want to hear it.</p>
+          <p class="body-sm" style="margin-bottom:32px;">Submit your talk proposal for aiGrunn 2026 and join a lineup of inspiring speakers from across the Netherlands and beyond.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdoqPVGUG43K_peP6r_xGVuegwwD8a6p-T-4HQ78ZTefC7j5w/viewform" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Submit your talk →</a>
+          <p class="body-sm" style="margin-top:18px;">Deadline for submissions: <strong style="color:var(--text);">13 October 2026</strong></p>
+        </div>
+        <div class="rfp-callout reveal-right delay-1">
+          <div class="rfp-callout-title">Submission guidelines</div>
+          <ul class="rfp-list">
+            <li>Open topics welcome: tech, business, ethics, education, creative AI, public sector</li>
+            <li>No sales pitches. All talks must deliver genuine learning value</li>
+            <li>Technical depth is welcome and appreciated</li>
+            <li>Slots: 30 minutes including Q&amp;A</li>
+            <li>English submissions only</li>
+            <li>All talks are recorded and published on YouTube</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Blast from the Past ── -->
+  <section id="talks" class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="label">Blast from the past</div>
+        <h2 class="display h2">Three years of ideas.<br>Still relevant.</h2>
+        <p class="body-lg">Catch up on some of our favourite talks from aiGrunn 2025, 2024 and 2023.</p>
+      </div>
+      <!-- ── 2025 lane (22 talks) ── -->
+      <div class="talks-year-group reveal">
+        <div class="talks-year-header">
+          <span class="talks-year-badge y2025">2025</span>
+          <span class="talks-year-count">22 talks</span>
+          <div class="lane-arrows">
+            <button class="lane-arrow lane-arrow-prev" data-lane="talksLane2025" aria-label="Previous" disabled>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="lane-arrow lane-arrow-next" data-lane="talksLane2025" aria-label="Next">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="talks-lane-wrap"><div class="talks-lane" id="talksLane2025">
+          <a href="https://www.youtube.com/watch?v=tP_kg20VAho" target="_blank" rel="noopener" class="talk-card" data-title="We Put YOLO on a Tractor — What could go wrong?" data-speaker="Wieneke Keller &amp; Navaneeth Krishnan" data-desc="Aurea Imaging retrofits tractors with vision-powered edge devices to enable precision farming — mapping entire orchards tree-by-tree as farmers drive. This system combines stereo vision, high-precision GPS, and machine learning to generate data products that drive automation and encourage resource-optimized and sustainable farming practices."><div class="talk-thumb"><img src="https://img.youtube.com/vi/tP_kg20VAho/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">We Put YOLO on a Tractor — What could go wrong?</div><div class="talk-speaker">Wieneke Keller &amp; Navaneeth Krishnan</div></div></a>
+          <a href="https://www.youtube.com/watch?v=qgAsZTDrlDo" target="_blank" rel="noopener" class="talk-card" data-title="Evaluation-driven product development" data-speaker="Òscar Vilaplana" data-desc="How do you build AI-based products and iterate fast while delivering measurable business value? As your product grows it becomes harder to evaluate what works, measure business impact, and have enough granularity for debugging. We'll explore multi-level evaluation strategies that scale with complexity, practical approaches to evaluation-driven development, and challenges at Tiqets."><div class="talk-thumb"><img src="https://img.youtube.com/vi/qgAsZTDrlDo/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Evaluation-driven product development</div><div class="talk-speaker">Òscar Vilaplana</div></div></a>
+          <a href="https://www.youtube.com/watch?v=qptQfIIAASo" target="_blank" rel="noopener" class="talk-card" data-title="Engineering Ethics into AI" data-speaker="Jorn de Vreede" data-desc="Move fast and break things doesn't work when the things you break are trust and fairness. In the AI era, every developer is, whether they like it or not, an AI ethicist. This talk explores how to add an ethics layer to your engineering — shaping decisions before they reach production."><div class="talk-thumb"><img src="https://img.youtube.com/vi/qptQfIIAASo/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Engineering Ethics into AI</div><div class="talk-speaker">Jorn de Vreede</div></div></a>
+          <a href="https://www.youtube.com/watch?v=FGDF-61OuG4" target="_blank" rel="noopener" class="talk-card" data-title="19 things I learned from AI coding, after not coding for 10 years" data-speaker="Mark Vletter" data-desc="I have not been coding for 10 years. That because I build stuff that works not that scales. But I am a very experienced product guy with loads of awesome developers surrounding me. What happens when you combined all of that in a collab with AI?"><div class="talk-thumb"><img src="https://img.youtube.com/vi/FGDF-61OuG4/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">19 things I learned from AI coding, after not coding for 10 years</div><div class="talk-speaker">Mark Vletter</div></div></a>
+          <a href="https://www.youtube.com/watch?v=mAXq9Zuyi3U" target="_blank" rel="noopener" class="talk-card" data-title="How AI is helping you back on the road" data-speaker="Yke Rusticus" data-desc="At ANWB, data takes a fundamental role in helping people with car trouble. From the moment someone calls with 'Help, I'm stranded!' to the technician sending them safely on the road again, we make predictions using AI. This story is about overcoming challenges in an organisation that has been around since the invention of the bike."><div class="talk-thumb"><img src="https://img.youtube.com/vi/mAXq9Zuyi3U/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">How AI is helping you back on the road</div><div class="talk-speaker">Yke Rusticus</div></div></a>
+          <a href="https://www.youtube.com/watch?v=ii90UM4S5B0" target="_blank" rel="noopener" class="talk-card" data-title="Teaching AI to Hunt for Vulnerabilities" data-speaker="Roald Nefs" data-desc="Imagine training an AI the way you might train a truffle hog — but instead of truffles, it hunts for hidden security flaws inside complex software systems. Truffler uses large language models to guide exploration, asking questions, poking at systems, and following strange clues."><div class="talk-thumb"><img src="https://img.youtube.com/vi/ii90UM4S5B0/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Teaching AI to Hunt for Vulnerabilities</div><div class="talk-speaker">Roald Nefs</div></div></a>
+          <a href="https://www.youtube.com/watch?v=fy8ALrKiKRU" target="_blank" rel="noopener" class="talk-card" data-title="The Modern AI Stack: From Function Calls to Federated Agents with MCP and A2A" data-speaker="Maarten Smeets" data-desc="The age of agentic AI is here, but our architectures are struggling to keep up. This session provides a clear architectural roadmap for the modern AI stack: MCP standardizes agent-to-tool communication, an MCP Gateway handles security and routing, and A2A governs multi-agent collaboration."><div class="talk-thumb"><img src="https://img.youtube.com/vi/fy8ALrKiKRU/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">The Modern AI Stack: From Function Calls to Federated Agents with MCP and A2A</div><div class="talk-speaker">Maarten Smeets</div></div></a>
+          <a href="https://www.youtube.com/watch?v=V2F80w2HSXA" target="_blank" rel="noopener" class="talk-card" data-title="GPT-NL: Developing a Dutch LLM from scratch" data-speaker="Julio A. de Oliveira Filho &amp; Athanasios Trantas" data-desc="GPT-NL will be a language model for Dutch language and culture — transparent, inclusive, and compliant with Dutch and European values. An initiative of TNO, SURF, and NFI. This talk shares the experience and challenges of training a major LLM model from scratch."><div class="talk-thumb"><img src="https://img.youtube.com/vi/V2F80w2HSXA/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">GPT-NL: Developing a Dutch LLM from scratch</div><div class="talk-speaker">Julio A. de Oliveira Filho &amp; Athanasios Trantas</div></div></a>
+          <a href="https://www.youtube.com/watch?v=SGVPrFGg1fo" target="_blank" rel="noopener" class="talk-card" data-title="Automating myself: From Customer Intent to Information System" data-speaker="Valentin Bister" data-desc="This talk explores how MyStekz can capture real customer intent and feed it directly into a system that generates working code — using MyStekzMCP, templates, and Cloudflare Sandboxes to create the 'magic machine' that connects intent to implementation."><div class="talk-thumb"><img src="https://img.youtube.com/vi/SGVPrFGg1fo/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Automating myself: From Customer Intent to Information System</div><div class="talk-speaker">Valentin Bister</div></div></a>
+          <a href="https://www.youtube.com/watch?v=OjoWmUokYaY" target="_blank" rel="noopener" class="talk-card" data-title="AI-First Playbook: How Leaders and Pros Stay Ahead of the Curve" data-speaker="Yonatan Alexander" data-desc="AI is here — and it's equal parts magic, meltdown, and meme. This talk pulls back the curtain on what it really takes to lead and thrive in an AI-driven world — as an organization and as a professional. Unfiltered, meme-worthy truth about surviving and winning in the age of AI."><div class="talk-thumb"><img src="https://img.youtube.com/vi/OjoWmUokYaY/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">AI-First Playbook: How Leaders and Pros Stay Ahead of the Curve</div><div class="talk-speaker">Yonatan Alexander</div></div></a>
+          <a href="https://www.youtube.com/watch?v=_A5hye8B1lw" target="_blank" rel="noopener" class="talk-card" data-title="MLOps Magic: Templates &amp; Monorepos for Production" data-speaker="Jeroen Bleker" data-desc="Many data scientists struggle with the journey from Jupyter notebooks to production-ready ML systems. An MLOps template or monorepo eliminates much of this friction by providing a standardized, automated pathway to deployment — with linting, security scanning, containerization, and packaging built in."><div class="talk-thumb"><img src="https://img.youtube.com/vi/_A5hye8B1lw/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">MLOps Magic: Templates &amp; Monorepos for Production</div><div class="talk-speaker">Jeroen Bleker</div></div></a>
+          <a href="https://www.youtube.com/watch?v=AxKnQSvBqEA" target="_blank" rel="noopener" class="talk-card" data-title="Vibe Coding: The Revenge of Requirements and Architecture?" data-speaker="Jan Salvador van der Ven" data-desc="If we no longer need to write all the code ourselves, what then defines a project? Should we return to requirements and architecture, or discover new ways of defining systems? A journey through how software was built, how agile accelerated speed, and how AI tooling is now disrupting the process."><div class="talk-thumb"><img src="https://img.youtube.com/vi/AxKnQSvBqEA/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Vibe Coding: The Revenge of Requirements and Architecture?</div><div class="talk-speaker">Jan Salvador van der Ven</div></div></a>
+          <a href="https://www.youtube.com/watch?v=7IHkMBl0WjQ" target="_blank" rel="noopener" class="talk-card" data-title="Interacting with a billion records using (semi-)autonomous agents" data-speaker="Tim Kreutz" data-desc="What if you have one billion structured records an LLM needs to know about before answering a question? Tim zips through the many considerations that go into building an agentic AI that needs to be efficient yet thorough, creative yet factual, and autonomous yet accountable."><div class="talk-thumb"><img src="https://img.youtube.com/vi/7IHkMBl0WjQ/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Interacting with a billion records using (semi-)autonomous agents</div><div class="talk-speaker">Tim Kreutz</div></div></a>
+          <a href="https://www.youtube.com/watch?v=DaJj7jZh0Xw" target="_blank" rel="noopener" class="talk-card" data-title="Private LLMs, when ChatGPT isn't an option" data-speaker="Remi Baar" data-desc="As organizations rush to implement LLMs, critical questions about security, compliance, and data sovereignty often surface too late. When an external LLM provider isn't an option, self-hosting a private LLM might be the solution. This talk covers best practices, hosting strategies, deployment and maintenance."><div class="talk-thumb"><img src="https://img.youtube.com/vi/DaJj7jZh0Xw/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Private LLMs, when ChatGPT isn't an option</div><div class="talk-speaker">Remi Baar</div></div></a>
+          <a href="https://www.youtube.com/watch?v=8ry5Mq1PYxQ" target="_blank" rel="noopener" class="talk-card" data-title="Why Care About AI Safety?" data-speaker="Alexander Müller &amp; Thomas Brcic" data-desc="Will AI really cause a catastrophe? Hopefully not! But advanced AI poses serious risks. This talk covers the full spectrum of possible risks — from bias and deepfakes to autonomous AI seeking power — and discusses ways to mitigate them."><div class="talk-thumb"><img src="https://img.youtube.com/vi/8ry5Mq1PYxQ/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Why Care About AI Safety?</div><div class="talk-speaker">Alexander Müller &amp; Thomas Brcic</div></div></a>
+          <a href="https://www.youtube.com/watch?v=4jtQ-f7hUzc" target="_blank" rel="noopener" class="talk-card" data-title="Near-Zero Defects: Visual Anomaly Detection on Edge Devices" data-speaker="Rajesh Gangireddy &amp; Ashwin Vaidya" data-desc="A practical walkthrough of developing anomaly detection solutions for industrial use cases using open-source tools — identifying defective gears on a production line to achieve near-zero defects, with edge training and inference on fanless industrial devices."><div class="talk-thumb"><img src="https://img.youtube.com/vi/4jtQ-f7hUzc/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Near-Zero Defects: Visual Anomaly Detection on Edge Devices</div><div class="talk-speaker">Rajesh Gangireddy &amp; Ashwin Vaidya</div></div></a>
+          <a href="https://www.youtube.com/watch?v=vVwr7NXBRbE" target="_blank" rel="noopener" class="talk-card" data-title="Local-first AI" data-speaker="Erik Poolman" data-desc="For builders who want AI running under their own roof. A local-first stack covering image generation, voice cloning, small/medium local LLMs, and video diffusion. Straight talk on what actually works, what wastes time, and the glue that matters: quantization, VRAM budgeting and Python pipelines."><div class="talk-thumb"><img src="https://img.youtube.com/vi/vVwr7NXBRbE/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Local-first AI</div><div class="talk-speaker">Erik Poolman</div></div></a>
+          <a href="https://www.youtube.com/watch?v=kxN3ZOxs1VY" target="_blank" rel="noopener" class="talk-card" data-title="Liar Lair! Assess the Correctness of an LLM Chatbot" data-speaker="Ayushi Rastogi" data-desc="Large Language Models present an unprecedented opportunity to improve productivity. But how can we tell when they lie? This talk shares insights from evaluating the correctness of a Dutch LLM-based chatbot developed at AFAS Software, along with key lessons learned."><div class="talk-thumb"><img src="https://img.youtube.com/vi/kxN3ZOxs1VY/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Liar Lair! Assess the Correctness of an LLM Chatbot</div><div class="talk-speaker">Ayushi Rastogi</div></div></a>
+          <a href="https://www.youtube.com/watch?v=rhBKG13ItZ4" target="_blank" rel="noopener" class="talk-card" data-title="The Storyteller Project" data-speaker="Artur Barseghyan" data-desc="Where your imagination meets state-of-the-art AI creativity. Share a brief message outlining the story you envision, add characters, and the system transforms your input into an engaging narrative using a text-to-text LLM while a text-to-image model generates visuals — compiled into a polished PDF fairytale."><div class="talk-thumb"><img src="https://img.youtube.com/vi/rhBKG13ItZ4/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">The Storyteller Project</div><div class="talk-speaker">Artur Barseghyan</div></div></a>
+          <a href="https://www.youtube.com/watch?v=0OXs_9aMYcg" target="_blank" rel="noopener" class="talk-card" data-title="Building interactive AI vision tools for the browser" data-speaker="Mark Redeman" data-desc="How we developed AI vision tools that run locally in the browser — drawing bounding boxes or segmentation masks on vision datasets without any server communication. Covers integrating ONNXRuntime for Meta's Segment Anything Model (SAM) and practical optimization tips."><div class="talk-thumb"><img src="https://img.youtube.com/vi/0OXs_9aMYcg/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Building interactive AI vision tools for the browser</div><div class="talk-speaker">Mark Redeman</div></div></a>
+          <a href="https://www.youtube.com/watch?v=ujzx9UGWDcI" target="_blank" rel="noopener" class="talk-card" data-title="Think Like a Doctor: Theory of Mind for Explainability and Trust in Human-AI Collaboration" data-speaker="Wico Mulder" data-desc="A framework to support AI decision-making in medical contexts, enabling two-way communication between an AI agent and a doctor when classifying ambiguous cells in histological tissue samples — mirroring real-life consultations between medical professionals."><div class="talk-thumb"><img src="https://img.youtube.com/vi/ujzx9UGWDcI/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Think Like a Doctor: Theory of Mind for Explainability and Trust in Human-AI Collaboration</div><div class="talk-speaker">Wico Mulder</div></div></a>
+          <a href="https://www.youtube.com/watch?v=rEpD2h3P4cE" target="_blank" rel="noopener" class="talk-card" data-title="Learning From Biology: The Evolution of Self-Supervised Vision" data-speaker="Jordy de Lange" data-desc="Self-supervised learning has emerged as a powerful alternative to labelled training data, allowing us to leverage vast amounts of unlabeled data to pre-train models. This talk explores the growing parallels between biological vision processing and modern self-supervised learning — from autoencoders to masked image modelling and JEPA."><div class="talk-thumb"><img src="https://img.youtube.com/vi/rEpD2h3P4cE/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Learning From Biology: The Evolution of Self-Supervised Vision</div><div class="talk-speaker">Jordy de Lange</div></div></a>
+        </div></div>
+      </div>
+
+      <!-- ── 2024 lane (28 talks) ── -->
+      <div class="talks-year-group reveal">
+        <div class="talks-year-header">
+          <span class="talks-year-badge y2024">2024</span>
+          <span class="talks-year-count">28 talks</span>
+          <div class="lane-arrows">
+            <button class="lane-arrow lane-arrow-prev" data-lane="talksLane2024" aria-label="Previous" disabled>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="lane-arrow lane-arrow-next" data-lane="talksLane2024" aria-label="Next">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="talks-lane-wrap"><div class="talks-lane" id="talksLane2024">
+          <a href="https://www.youtube.com/watch?v=LFqUrz1ambc" target="_blank" rel="noopener" class="talk-card" data-title="Digitising the (geospatial) world with AI" data-speaker="Ruud Henken &amp; Stefan Wierda" data-desc="AI-InfraSolutions digitised all of the Netherlands — every street, every parking area. This talk explores the complexities of large-scale mobile mapping and how AI solutions streamline processing and analysis, automating asset management from data acquisition to enriched, high-precision information."><div class="talk-thumb"><img src="https://img.youtube.com/vi/LFqUrz1ambc/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Digitising the (geospatial) world with AI</div><div class="talk-speaker">Ruud Henken &amp; Stefan Wierda</div></div></a>
+          <a href="https://www.youtube.com/watch?v=NQ4-n-CHF00" target="_blank" rel="noopener" class="talk-card" data-title="RAGing agents" data-speaker="Sven Vintges &amp; Jelle Klaver" data-desc="AI Agents and LLMs are powerful tools — but implementing them into your core systems can be daunting. This talk walks through practical examples combining RAG, function calling, and context injection with multiple agents to make AI Agents achievable for your business."><div class="talk-thumb"><img src="https://img.youtube.com/vi/NQ4-n-CHF00/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">RAGing agents</div><div class="talk-speaker">Sven Vintges &amp; Jelle Klaver</div></div></a>
+          <a href="https://www.youtube.com/watch?v=uk7a5xOEvw4" target="_blank" rel="noopener" class="talk-card" data-title="Shimmers: building a GenAI indie game" data-speaker="Jochem Kleine" data-desc="Using modern GenAI tools (Midjourney, ChatGPT) for development and art creation, one man army indie developers with full time jobs are a thing again. A journey conceptualising, building, and deploying a GenAI powered mobile game in 2024 — including generating nearly every single line of Flutter code."><div class="talk-thumb"><img src="https://img.youtube.com/vi/uk7a5xOEvw4/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Shimmers: building a GenAI indie game</div><div class="talk-speaker">Jochem Kleine</div></div></a>
+          <a href="https://www.youtube.com/watch?v=mTxDVVzuBLU" target="_blank" rel="noopener" class="talk-card" data-title="Is your database designed for AI?" data-speaker="JP Hwang" data-desc="A new tech stack to work with AI is emerging. A deep dive into the inner workings of AI-native databases — covering vector indexes, hybrid searches, RAG, multi-modality, multi-tenancy, quantization, tokenization, and integration with AI models."><div class="talk-thumb"><img src="https://img.youtube.com/vi/mTxDVVzuBLU/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Is your database designed for AI?</div><div class="talk-speaker">JP Hwang</div></div></a>
+          <a href="https://www.youtube.com/watch?v=xtJr7hS8N7w" target="_blank" rel="noopener" class="talk-card" data-title="Challenges with Human Digital Twins" data-speaker="Harald Rietdijk" data-desc="Implementing Human Digital Twins in personal coaching applications for rehabilitation and sedentary job coaching. Working with small datasets with high feature counts — using feature selection tooling to identify important features for rehabilitation duration after knee arthroplasty."><div class="talk-thumb"><img src="https://img.youtube.com/vi/xtJr7hS8N7w/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Challenges with Human Digital Twins</div><div class="talk-speaker">Harald Rietdijk</div></div></a>
+          <a href="https://www.youtube.com/watch?v=NY7Xe8PFpL4" target="_blank" rel="noopener" class="talk-card" data-title="Going beyond tabular data with graphs" data-speaker="Chris van Riemsdijk" data-desc="Much of the data we encounter in real-world applications doesn't fit neatly into two-dimensional structures. Social networks, chemical compounds, biological interactions, infrastructure networks — where traditional deep learning struggles, Graph Neural Networks (GNNs) come in."><div class="talk-thumb"><img src="https://img.youtube.com/vi/NY7Xe8PFpL4/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Going beyond tabular data with graphs</div><div class="talk-speaker">Chris van Riemsdijk</div></div></a>
+          <a href="https://www.youtube.com/watch?v=DmnfwWLpadc" target="_blank" rel="noopener" class="talk-card" data-title="Manual to Massive: Scaling AI Without Losing Your Mind" data-speaker="Sebastiaan den Boer" data-desc="How we saved more than 1.5 manyears of tedious, manual labour in a matter of days. A practical use case of the ridiculous value of genAI — and the complexity of running genAI at scale. GenAI: where pilots are easy, but production is hard!"><div class="talk-thumb"><img src="https://img.youtube.com/vi/DmnfwWLpadc/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Manual to Massive: Scaling AI Without Losing Your Mind</div><div class="talk-speaker">Sebastiaan den Boer</div></div></a>
+          <a href="https://www.youtube.com/watch?v=rKZfta2aJvI" target="_blank" rel="noopener" class="talk-card" data-title="Hallucinations and Hyperparameters: Navigating the Quirks of LLMs" data-speaker="Yonatan Alexander" data-desc="An overview of the current state of LLMs, covering hyperparameters, batching, GPU utilization, routing strategies, and token summarization. Plus: fine-tuning vs RAG vs prefix caching, security risks like prompt injection, and best practices for prompt engineering."><div class="talk-thumb"><img src="https://img.youtube.com/vi/rKZfta2aJvI/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Hallucinations and Hyperparameters: Navigating the Quirks of LLMs</div><div class="talk-speaker">Yonatan Alexander</div></div></a>
+          <a href="https://www.youtube.com/watch?v=uB26AapAl5Y" target="_blank" rel="noopener" class="talk-card" data-title="From RAG to riches: How LLMs can take enterprise search to the next level" data-speaker="Marten Koopmans" data-desc="One of the most promising use cases for LLMs is semantic search using RAG — embeddings generated by an embedding model, text fulfilled by a text-to-text LLM. A modular, extensible smart search solution that integrates in any IT-landscape, from private cloud to explained model results."><div class="talk-thumb"><img src="https://img.youtube.com/vi/uB26AapAl5Y/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">From RAG to riches: How LLMs can take enterprise search to the next level</div><div class="talk-speaker">Marten Koopmans</div></div></a>
+          <a href="https://www.youtube.com/watch?v=QwlKhT48LVg" target="_blank" rel="noopener" class="talk-card" data-title="Powering Productivity: The Energy Costs of Generative AI" data-speaker="Bram de Wit" data-desc="A closer look at the energy consumption required to train and run generative AI models, with a focus on the real environmental costs. What resources do these tools require and what is their impact on global energy usage — put in perspective against other technologies and industries."><div class="talk-thumb"><img src="https://img.youtube.com/vi/QwlKhT48LVg/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Powering Productivity: The Energy Costs of Generative AI</div><div class="talk-speaker">Bram de Wit</div></div></a>
+          <a href="https://www.youtube.com/watch?v=y4gJi7Fq_fk" target="_blank" rel="noopener" class="talk-card" data-title="AI in Education and Research at Hanze" data-speaker="Rix Groenboom &amp; Joran Arends" data-desc="Hanze University introduces AI across its curriculum — including an international minor 'AI and your Future Profession' for students of law, marketing, programming, music and more. Students reflect on how AI will impact their professional career. Plus applied research projects where AI makes advances in various fields."><div class="talk-thumb"><img src="https://img.youtube.com/vi/y4gJi7Fq_fk/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">AI in Education and Research at Hanze</div><div class="talk-speaker">Rix Groenboom &amp; Joran Arends</div></div></a>
+          <a href="https://www.youtube.com/watch?v=wo01S-oHQSY" target="_blank" rel="noopener" class="talk-card" data-title="Beyond Buttons: How Chat is Revolutionizing Software Interaction" data-speaker="Alexander Jeurissen &amp; Willian van der Velde" data-desc="Chat represents a paradigm shift from traditional software interfaces — bounded only by human imagination, expression and AI comprehension. Includes analysis of conversation patterns, reflection capabilities of modern LLMs, specialized tag extraction, and strategies for improving chat discoverability."><div class="talk-thumb"><img src="https://img.youtube.com/vi/wo01S-oHQSY/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Beyond Buttons: How Chat is Revolutionizing Software Interaction</div><div class="talk-speaker">Alexander Jeurissen &amp; Willian van der Velde</div></div></a>
+          <a href="https://www.youtube.com/watch?v=lzIjf0la28k" target="_blank" rel="noopener" class="talk-card" data-title="Autimaatje: genAI &amp; mental health" data-speaker="Sven Warris" data-desc="Exploring the intersection of generative AI and mental health. Autimaatje is a genAI tool designed for neurodiverse individuals with autism — delivering personalized, context-aware support for everyday events, improving task management and mental health with Impact Analyses and Color-Coding the Schedule."><div class="talk-thumb"><img src="https://img.youtube.com/vi/lzIjf0la28k/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Autimaatje: genAI &amp; mental health</div><div class="talk-speaker">Sven Warris</div></div></a>
+          <a href="https://www.youtube.com/watch?v=eyWL0sTJeP8" target="_blank" rel="noopener" class="talk-card" data-title="Using causality theory to correct for training set bias" data-speaker="Onno Zoeter" data-desc="Historical datasets typically reflect a combination of a source of randomness and a controlling mechanism like a ranker. A straightforward regression approach can't disentangle the influence of the controller — this is the main goal of the Mercury Machine Learning Lab, combining information retrieval, causality and reinforcement learning."><div class="talk-thumb"><img src="https://img.youtube.com/vi/eyWL0sTJeP8/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Using causality theory to correct for training set bias</div><div class="talk-speaker">Onno Zoeter</div></div></a>
+          <a href="https://www.youtube.com/watch?v=cCcBX2vLDas" target="_blank" rel="noopener" class="talk-card" data-title="Contextual Artificial Intelligence" data-speaker="Jean Paul van Oosten &amp; Edzo Botjes" data-desc="Have you ever had disappointing results trying to apply LLMs to your particular use-case? You'll learn what you still need to know about data, governance and providing enough context to your LLM — especially when you want it to solve a business critical task. What is the value of data, now and in the future?"><div class="talk-thumb"><img src="https://img.youtube.com/vi/cCcBX2vLDas/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Contextual Artificial Intelligence</div><div class="talk-speaker">Jean Paul van Oosten &amp; Edzo Botjes</div></div></a>
+          <a href="https://www.youtube.com/watch?v=WqlELGjCtZ8" target="_blank" rel="noopener" class="talk-card" data-title="Building agents with GPT-4o-realtime" data-speaker="Henk Boelman" data-desc="Picture an AI system that not only comes up with creative and clear responses but also makes decisions and takes action. Step into the future of AI and see how you can tap into the full power of LLMs by creating your AI agent."><div class="talk-thumb"><img src="https://img.youtube.com/vi/WqlELGjCtZ8/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Building agents with GPT-4o-realtime</div><div class="talk-speaker">Henk Boelman</div></div></a>
+          <a href="https://www.youtube.com/watch?v=SmNvuVsyEig" target="_blank" rel="noopener" class="talk-card" data-title="Make LLM inference go brrr" data-speaker="Daniël de Kok" data-desc="Self-hosted, open LLMs are becoming increasingly popular. This talk gives an overview of techniques employed by modern inference engines: tensor parallelism, flash attention, key-value caching, paged attention, prefix caching, and quantization — and the transformer bottlenecks they address."><div class="talk-thumb"><img src="https://img.youtube.com/vi/SmNvuVsyEig/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Make LLM inference go brrr</div><div class="talk-speaker">Daniël de Kok</div></div></a>
+          <a href="https://www.youtube.com/watch?v=RVbYJvcpTrs" target="_blank" rel="noopener" class="talk-card" data-title="Wattflex: AI in the Energy Transition" data-speaker="Steven Warmelink" data-desc="In the Wattflex project, we investigated how AI-controlled batteries can reduce imbalance on the electricity grid. Optimizing for home batteries combined with solar panels and large-scale batteries (1MW+) near solar parks — using algorithmic, linear programming and reinforcement learning control mechanisms."><div class="talk-thumb"><img src="https://img.youtube.com/vi/RVbYJvcpTrs/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Wattflex: AI in the Energy Transition</div><div class="talk-speaker">Steven Warmelink</div></div></a>
+          <a href="https://www.youtube.com/watch?v=APH9NzosWJA" target="_blank" rel="noopener" class="talk-card" data-title="AI-Infused Software Architecture" data-speaker="Marcel Schutte" data-desc="How AI can serve as a practical partner in an architect's daily work. Live demos showcasing how AI accelerates brainstorming, designing architecture diagrams, writing ADRs, and generating architectural unit tests — simplifying complex workflows and reinforcing code quality."><div class="talk-thumb"><img src="https://img.youtube.com/vi/APH9NzosWJA/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">AI-Infused Software Architecture</div><div class="talk-speaker">Marcel Schutte</div></div></a>
+          <a href="https://www.youtube.com/watch?v=3kiTAGa7VFI" target="_blank" rel="noopener" class="talk-card" data-title="AI Agent UX Patterns: Lessons From 1000 Startups" data-speaker="Jonas Braadbaart" data-desc="Overview of the most common UX patterns in agentic AI applications today, highlighting what works and what doesn't, providing insights on how to build better AI agent integrations."><div class="talk-thumb"><img src="https://img.youtube.com/vi/3kiTAGa7VFI/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">AI Agent UX Patterns: Lessons From 1000 Startups</div><div class="talk-speaker">Jonas Braadbaart</div></div></a>
+          <a href="https://www.youtube.com/watch?v=32pPkQVqOfM" target="_blank" rel="noopener" class="talk-card" data-title="Designing Human-AI Interaction for Effective Assistance" data-speaker="" data-desc="AI is increasingly becoming a part of our daily lives. This talk explores two fields where AI is making an impact: in building management (AI detects signals and patterns, accelerating sensor configuration from weeks to hours), and in healthcare and mental health AI assistants."><div class="talk-thumb"><img src="https://img.youtube.com/vi/32pPkQVqOfM/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Designing Human-AI Interaction for Effective Assistance</div><div class="talk-speaker">aiGrunn 2024</div></div></a>
+          <a href="https://www.youtube.com/watch?v=scZzsK9zVl8" target="_blank" rel="noopener" class="talk-card" data-title="A Large Language Model took me on vacation" data-speaker="Jorrik Klijnsma" data-desc="Imagine handing over your vacation planning to an AI. That's exactly what Jorrik did for his trip to Porto. You'll learn why context is king in AI interactions and ways to provide it effectively — plus 'Indirect Conversation', a new method for pushing AI's creative boundaries."><div class="talk-thumb"><img src="https://img.youtube.com/vi/scZzsK9zVl8/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">A Large Language Model took me on vacation</div><div class="talk-speaker">Jorrik Klijnsma</div></div></a>
+          <a href="https://www.youtube.com/watch?v=vN8BlSw9Lhg" target="_blank" rel="noopener" class="talk-card" data-title="Real-World Insights: Lessons from Using Azure AI and ChatGPT in Live" data-speaker="New Nexus" data-desc="At New Nexus, we developed an application connecting ChatGPT through Azure AI to automate transferring data from daily reports into another system — replacing a brittle OCR application with something that handles constantly changing document formats without constant updates."><div class="talk-thumb"><img src="https://img.youtube.com/vi/vN8BlSw9Lhg/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Real-World Insights: Lessons from Using Azure AI and ChatGPT in Live</div><div class="talk-speaker">New Nexus</div></div></a>
+          <a href="https://www.youtube.com/watch?v=p5aUBtGBXRQ" target="_blank" rel="noopener" class="talk-card" data-title="Software for AI for software" data-speaker="Willem Jonker" data-desc="The role AI plays in software development and the kind of software one finds in AI systems — covering various aspects of software engineering including HW/SW architecture."><div class="talk-thumb"><img src="https://img.youtube.com/vi/p5aUBtGBXRQ/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Software for AI for software</div><div class="talk-speaker">Willem Jonker</div></div></a>
+          <a href="https://www.youtube.com/watch?v=WBbi1o5ZnsY" target="_blank" rel="noopener" class="talk-card" data-title="Panel: The future of AI development" data-speaker="Niels Taatgen, Willem Jonker, Onno Zoeter, Yonatan Alexander" data-desc="Host Berco Beute challenges thought leaders from academia, public-private enterprises, corporations, and startups about their vision on the future of software engineering in the age of AI."><div class="talk-thumb"><img src="https://img.youtube.com/vi/WBbi1o5ZnsY/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Panel: The future of AI development</div><div class="talk-speaker">Niels Taatgen, Willem Jonker, Onno Zoeter, Yonatan Alexander</div></div></a>
+          <a href="https://www.youtube.com/watch?v=0_bY_xgkKCc" target="_blank" rel="noopener" class="talk-card" data-title="Opening talk" data-speaker="Berco Beute" data-desc="Let's kick off the day! Opening of aiGrunn 2024 by host Berco Beute."><div class="talk-thumb"><img src="https://img.youtube.com/vi/0_bY_xgkKCc/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Opening talk</div><div class="talk-speaker">Berco Beute</div></div></a>
+          <a href="https://www.youtube.com/watch?v=-PZ58q7b6Qw" target="_blank" rel="noopener" class="talk-card" data-title="The future of AI" data-speaker="Niels Taatgen" data-desc="The University of Groningen has a tradition in research and teaching in AI for at least thirty years. Focusing on the directions seen as important for the future of AI: Persistent human-inspired AI; Future hardware for AI (neuromorphic computing); Human-centered AI."><div class="talk-thumb"><img src="https://img.youtube.com/vi/-PZ58q7b6Qw/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">The future of AI</div><div class="talk-speaker">Niels Taatgen</div></div></a>
+        </div></div>
+      </div>
+
+      <!-- ── 2023 lane (17 talks) ── -->
+      <div class="talks-year-group reveal">
+        <div class="talks-year-header">
+          <span class="talks-year-badge y2023">2023</span>
+          <span class="talks-year-count">17 talks</span>
+          <div class="lane-arrows">
+            <button class="lane-arrow lane-arrow-prev" data-lane="talksLane2023" aria-label="Previous" disabled>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="lane-arrow lane-arrow-next" data-lane="talksLane2023" aria-label="Next">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="talks-lane-wrap"><div class="talks-lane" id="talksLane2023">
+          <a href="https://www.youtube.com/watch?v=elJmOA2_M1c" target="_blank" rel="noopener" class="talk-card" data-title="Opening talk" data-speaker="Berco Beute" data-desc="Traditional welcome by endboss Berco Beute! Opening of the very first aiGrunn conference."><div class="talk-thumb"><img src="https://img.youtube.com/vi/elJmOA2_M1c/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Opening talk</div><div class="talk-speaker">Berco Beute</div></div></a>
+          <a href="https://www.youtube.com/watch?v=VD4JpRd9KHg" target="_blank" rel="noopener" class="talk-card" data-title="6 challenges to overcome bringing your LLM App to production" data-speaker="Wijnand Karsens" data-desc="In the past year I've worked on 7 prototypes and MVP's of Generative AI products. In this talk I'll go over the challenges I crossed and overcame in the process — let me advise you not to make my mistakes if you want to bring your genius GenAI idea to production."><div class="talk-thumb"><img src="https://img.youtube.com/vi/VD4JpRd9KHg/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">6 challenges to overcome bringing your LLM App to production</div><div class="talk-speaker">Wijnand Karsens</div></div></a>
+          <a href="https://www.youtube.com/watch?v=l9Gi2WslCgw" target="_blank" rel="noopener" class="talk-card" data-title="Mastering LLM-Based AI Applications: Azure ML Prompt Flow" data-speaker="Henk Boelman" data-desc="Explore Azure Machine Learning prompt flow — a cutting-edge development tool for AI applications powered by LLMs. Learn how to create executable flows linking LLMs, prompts, and Python tools, debug and share flows, perform large-scale testing, and deploy real-time endpoints."><div class="talk-thumb"><img src="https://img.youtube.com/vi/l9Gi2WslCgw/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Mastering LLM-Based AI Applications: Azure ML Prompt Flow</div><div class="talk-speaker">Henk Boelman</div></div></a>
+          <a href="https://www.youtube.com/watch?v=q86yefKbxko" target="_blank" rel="noopener" class="talk-card" data-title="Be a better developer with AI" data-speaker="Henry Bol" data-desc="AI can play a pivotal role in modern software development. LLM tools like ChatGPT Advanced Data Analysis are becoming real-time coding companions — direct data uploads and real-time coding changes the game. AI is more than just a tool; it's a partner for a brighter, more efficient future in development."><div class="talk-thumb"><img src="https://img.youtube.com/vi/q86yefKbxko/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Be a better developer with AI</div><div class="talk-speaker">Henry Bol</div></div></a>
+          <a href="https://www.youtube.com/watch?v=zCwMp5YhaGY" target="_blank" rel="noopener" class="talk-card" data-title="Data versioning for Machine Learning Practitioners" data-speaker="Yonatan Alexander" data-desc="The importance of data versioning in machine learning — what it is, why it matters, the difference between model and data versioning, challenges of tracking different versions, benefits for ML projects, best practices for implementation, and an overview of the top data versioning tools."><div class="talk-thumb"><img src="https://img.youtube.com/vi/zCwMp5YhaGY/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Data versioning for Machine Learning Practitioners</div><div class="talk-speaker">Yonatan Alexander</div></div></a>
+          <a href="https://www.youtube.com/watch?v=yD3bMWsM0mE" target="_blank" rel="noopener" class="talk-card" data-title="Real-time speech recognition: best practices for scale and performance" data-speaker="Emil Loer" data-desc="Strategies to deliver scalable low latency real-time speech recognition solutions — from efficiently getting a quality signal from an audio device, propagating it over the network, to feeding it into various models. Design decisions related to stability, latency, and throughput."><div class="talk-thumb"><img src="https://img.youtube.com/vi/yD3bMWsM0mE/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Real-time speech recognition: best practices for scale and performance</div><div class="talk-speaker">Emil Loer</div></div></a>
+          <a href="https://www.youtube.com/watch?v=gNszm2Qs51s" target="_blank" rel="noopener" class="talk-card" data-title="Thinking outside the chat box" data-speaker="JP van Oosten" data-desc="LLMs such as ChatGPT have taken the world by storm. Looking at valid LLM use cases, but also at some applications that are better served by alternatives. JP has been working on AI and AI-related applications for 20 years, holding a PhD in Artificial Intelligence from the University of Groningen."><div class="talk-thumb"><img src="https://img.youtube.com/vi/gNszm2Qs51s/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Thinking outside the chat box</div><div class="talk-speaker">JP van Oosten</div></div></a>
+          <a href="https://www.youtube.com/watch?v=-ZIAN3zosuA" target="_blank" rel="noopener" class="talk-card" data-title="Building a chatbot for a specific domain" data-speaker="Sven Vintges" data-desc="Real-world examples of using LLMs: integrating them in business processes, keeping humans involved, and using private data within LLMs. Sven's journey using Langchain and his perspective on it — 23 years in IT, CTO at Stekz."><div class="talk-thumb"><img src="https://img.youtube.com/vi/-ZIAN3zosuA/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Building a chatbot for a specific domain</div><div class="talk-speaker">Sven Vintges</div></div></a>
+          <a href="https://www.youtube.com/watch?v=clnhMaTq1ZA" target="_blank" rel="noopener" class="talk-card" data-title="State-of-the-Art Transformer Pipelines in spaCy" data-speaker="Daniël de Kok &amp; Madeeswaran Kannan" data-desc="spaCy is a Python library for NLP pipelines. Using transformer models — from XLM-RoBERTa to Llama2 — to create state-of-the-art annotation pipelines for named entity recognition, span labeling, document classification, and uncovering syntactic structure."><div class="talk-thumb"><img src="https://img.youtube.com/vi/clnhMaTq1ZA/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">State-of-the-Art Transformer Pipelines in spaCy</div><div class="talk-speaker">Daniël de Kok &amp; Madeeswaran Kannan</div></div></a>
+          <a href="https://www.youtube.com/watch?v=ALJOgjP7Kog" target="_blank" rel="noopener" class="talk-card" data-title="Testing chatGPT checkers" data-speaker="Arend Top &amp; Rik Groenboom" data-desc="The rise of AI text generation has been enormous. Hanze University investigated AI text detection in education — specifically evaluating 6 available AI checkers for accuracy and effectiveness in detecting AI-generated texts."><div class="talk-thumb"><img src="https://img.youtube.com/vi/ALJOgjP7Kog/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Testing chatGPT checkers</div><div class="talk-speaker">Arend Top &amp; Rik Groenboom</div></div></a>
+          <a href="https://www.youtube.com/watch?v=RLeFAP8kWKE" target="_blank" rel="noopener" class="talk-card" data-title="Learntail: Turn anything into a quiz using AI" data-speaker="Arjan Egges" data-desc="How Learntail was built — a platform using AI to generate quizzes from plain text, websites and YouTube videos. Covers architecture, cloud setup, prompting techniques to optimize LLM output, and technical challenges encountered while developing the platform."><div class="talk-thumb"><img src="https://img.youtube.com/vi/RLeFAP8kWKE/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Learntail: Turn anything into a quiz using AI</div><div class="talk-speaker">Arjan Egges</div></div></a>
+          <a href="https://www.youtube.com/watch?v=My5xxhX5JK0" target="_blank" rel="noopener" class="talk-card" data-title="Anomalib: An open source deep learning library for anomaly detection" data-speaker="Ashwin Vaidya &amp; Dick Ameln" data-desc="Anomaly detection: distinguishing between normal and abnormal samples using only normal images during training. Anomalib provides a unified library for benchmarking algorithms — cited by papers at CVPR, with tooling for reproducibility, benchmarking, and edge deployment."><div class="talk-thumb"><img src="https://img.youtube.com/vi/My5xxhX5JK0/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Anomalib: An open source deep learning library for anomaly detection</div><div class="talk-speaker">Ashwin Vaidya &amp; Dick Ameln</div></div></a>
+          <a href="https://www.youtube.com/watch?v=sfJ0GIZSd9k" target="_blank" rel="noopener" class="talk-card" data-title="Pair programming with GitHub Copilot" data-speaker="Frederieke Scheper" data-desc="In the dark ages of the pandemic, we learned there's nothing like pair programming. Or is there? A slideless session, live coding in Agile/TDD style together with attendees and GitHub Copilot — does it live up to its promise of letting you focus on bigger problems?"><div class="talk-thumb"><img src="https://img.youtube.com/vi/sfJ0GIZSd9k/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Pair programming with GitHub Copilot</div><div class="talk-speaker">Frederieke Scheper</div></div></a>
+          <a href="https://www.youtube.com/watch?v=BWxTxL-m7qY" target="_blank" rel="noopener" class="talk-card" data-title="Fighting cancer with AI" data-speaker="Hylke Donker" data-desc="AI is revolutionising how we do science. Showcasing how unsupervised learning can be used to disentangle the mutation patterns in cancer — quantifying uncertainty to identify the cancer's unique fingerprint, helping doctors diagnose and tailor cancer treatment to the patient."><div class="talk-thumb"><img src="https://img.youtube.com/vi/BWxTxL-m7qY/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Fighting cancer with AI</div><div class="talk-speaker">Hylke Donker</div></div></a>
+          <a href="https://www.youtube.com/watch?v=RSU_yf9BzOU" target="_blank" rel="noopener" class="talk-card" data-title="Small and practical AI models for CO2 reduction in buildings" data-speaker="Bram de Wit" data-desc="Inspiring people to think again about how AI can be applied — without massive resources. Training and deploying hundreds of small AI models per year for individual buildings. Users configure their own AI models in a web platform. Running ONNX on Raspberry Pi and models in the browser."><div class="talk-thumb"><img src="https://img.youtube.com/vi/RSU_yf9BzOU/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Small and practical AI models for CO2 reduction in buildings</div><div class="talk-speaker">Bram de Wit</div></div></a>
+          <a href="https://www.youtube.com/watch?v=ys__Y1mICwo" target="_blank" rel="noopener" class="talk-card" data-title="Can generative AI help us make texts more understandable?" data-speaker="Jan Salvador van der Ven &amp; Jeroen van de Nieuwenhof" data-desc="About 2.5 million people in the Netherlands are low-literate. Tolkie assists them with automated explanation text and images to enhance the understandability of texts — using Spacy, Wiktionary, Google Translate, OpenAI for summaries, and Stable Diffusion to generate images."><div class="talk-thumb"><img src="https://img.youtube.com/vi/ys__Y1mICwo/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">Can generative AI help us make texts more understandable?</div><div class="talk-speaker">Jan Salvador van der Ven &amp; Jeroen van de Nieuwenhof</div></div></a>
+          <a href="https://www.youtube.com/watch?v=Rks-BfwgqmA" target="_blank" rel="noopener" class="talk-card" data-title="AI as part of impact driven business" data-speaker="Nina Vielen-Kallio &amp; Saikat Chatterjee" data-desc="eWEning star provides a positive example of using AI in energy transition — developing a personalised, automated information discovery tool for professionals in the energy sector, combining ChatGPT and human content expertise with automated data scraping and LLM-based content classifiers."><div class="talk-thumb"><img src="https://img.youtube.com/vi/Rks-BfwgqmA/mqdefault.jpg" alt="" loading="lazy"/><div class="talk-thumb-overlay"><div class="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#111"/></svg></div></div></div><div class="talk-info"><div class="talk-title">AI as part of impact driven business</div><div class="talk-speaker">Nina Vielen-Kallio &amp; Saikat Chatterjee</div></div></a>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating tooltip -->
+  <div class="talk-tooltip" id="talkTooltip" aria-hidden="true">
+    <div class="talk-tooltip-title"></div>
+    <div class="talk-tooltip-speaker"></div>
+    <div class="talk-tooltip-desc"></div>
+  </div>
+
+  <!-- ── Footer ── -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="nav-logo">
+            <img src="assets/logos/logo%20black.png" class="logo-light" alt="aiGrunn" />
+            <img src="assets/logos/aigrunn%20logo%20white.png" class="logo-dark"  alt="aiGrunn" />
+          </a>
+          <p>The AI ecosystem of the North.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Navigate</h3>
+          <ul class="footer-links">
+            <li><a href="/#tracks">Tracks</a></li>
+            <li><a href="/#tickets">Tickets</a></li>
+            <li><a href="/#ailand">aiLand</a></li>
+            <li><a href="/#sponsors">Sponsors</a></li>
+            <li><a href="/tech#rfp">Speak at aiGrunn</a></li>
+            <li><a href="/#gallery">Gallery</a></li>
+            <li><a href="/#cafe">aiGrunn Café</a></li>
+            <li><a href="/#hackathon">Hackathon</a></li>
+            <li><a href="/schedule">Schedule</a></li>
+            <li><a href="/podcast">Podcast</a></li>
+            <li><a href="/sponsoring">Sponsoring</a></li>
+            <li><a href="/code-of-conduct">Code of Conduct</a></li>
+            <li><a href="/privacy-policy">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-col footer-contact">
+          <h3>Contact</h3>
+          <p>
+            Atoomweg 6B<br>
+            9743 AK Groningen<br>
+            <br>
+            <a href="mailto:info@aigrunn.org">info@aigrunn.org</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        Organized by Stekz &nbsp;·&nbsp; aiGrunn is a non-commercial, community-driven event.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Cookie Banner ── -->
+  <div id="cookie-banner" class="hidden" role="dialog" aria-label="Cookie consent">
+    <p>We use analytics cookies to understand how visitors use this site. <a href="/privacy-policy">Privacy policy</a>.</p>
+    <div class="cookie-actions">
+      <button class="btn-outline" id="cookie-decline">Decline</button>
+      <button class="btn btn-primary" id="cookie-accept">Accept</button>
+    </div>
+  </div>
+
+  <script>
+    const html = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+    const iconSun = document.getElementById('iconSun');
+    const iconMoon = document.getElementById('iconMoon');
+    function applyTheme(dark) {
+      html.setAttribute('data-theme', dark ? 'dark' : 'light');
+      iconSun.style.display  = dark ? 'none' : '';
+      iconMoon.style.display = dark ? '' : 'none';
+    }
+    const savedTheme = localStorage.getItem('aigrunn-theme');
+    applyTheme(savedTheme === 'dark');
+    toggle.addEventListener('click', () => {
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      applyTheme(!isDark);
+      localStorage.setItem('aigrunn-theme', !isDark ? 'dark' : 'light');
+    });
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    });
+
+    /* Scroll reveal */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObserver.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -60px 0px', threshold: 0.08 });
+
+    document.querySelectorAll('.reveal, .reveal-scale, .reveal-left, .reveal-right').forEach(el => revealObserver.observe(el));
+
+    /* Talks lanes */
+    ['talksLane2025', 'talksLane2024', 'talksLane2023'].forEach(id => {
+      const lane = document.getElementById(id);
+      if (!lane) return;
+      const prevBtn = document.querySelector(`.lane-arrow-prev[data-lane="${id}"]`);
+      const nextBtn = document.querySelector(`.lane-arrow-next[data-lane="${id}"]`);
+
+      function updateArrows() {
+        if (prevBtn) prevBtn.disabled = lane.scrollLeft <= 0;
+        if (nextBtn) nextBtn.disabled = lane.scrollLeft + lane.clientWidth >= lane.scrollWidth - 2;
+      }
+      updateArrows();
+      lane.addEventListener('scroll', updateArrows, { passive: true });
+      if (prevBtn) prevBtn.addEventListener('click', () => lane.scrollBy({ left: -lane.clientWidth, behavior: 'smooth' }));
+      if (nextBtn) nextBtn.addEventListener('click', () => lane.scrollBy({ left: lane.clientWidth, behavior: 'smooth' }));
+      lane.addEventListener('wheel', e => {
+        if (Math.abs(e.deltaX) < Math.abs(e.deltaY)) return;
+        e.preventDefault();
+      }, { passive: false });
+    });
+
+    /* Talk card 3D tilt */
+    (function() {
+      document.querySelectorAll('.talk-card').forEach(card => {
+        let rotX = 0, rotY = 0, targetX = 0, targetY = 0, rafId = null;
+        function spring() {
+          rotX += (targetX - rotX) * 0.12;
+          rotY += (targetY - rotY) * 0.12;
+          card.style.transform = `perspective(700px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+          if (Math.abs(targetX - rotX) > 0.01 || Math.abs(targetY - rotY) > 0.01) rafId = requestAnimationFrame(spring);
+        }
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          targetY =  ((e.clientX - rect.left) / rect.width  - 0.5) * 14;
+          targetX = -((e.clientY - rect.top)  / rect.height - 0.5) * 10;
+          if (!rafId) rafId = requestAnimationFrame(spring);
+        });
+        card.addEventListener('mouseleave', () => { targetX = 0; targetY = 0; if (!rafId) rafId = requestAnimationFrame(spring); });
+        card.addEventListener('mouseenter', () => { rafId = null; });
+      });
+    })();
+
+    /* Talk tooltip */
+    (function() {
+      const tooltip  = document.getElementById('talkTooltip');
+      if (!tooltip) return;
+      const ttTitle   = tooltip.querySelector('.talk-tooltip-title');
+      const ttSpeaker = tooltip.querySelector('.talk-tooltip-speaker');
+      const ttDesc    = tooltip.querySelector('.talk-tooltip-desc');
+      let mouseX = 0, mouseY = 0, tipX = 0, tipY = 0, rafTip = null;
+
+      function lerpTip() {
+        tipX += (mouseX - tipX) * 0.14;
+        tipY += (mouseY - tipY) * 0.14;
+        tooltip.style.left = tipX + 'px';
+        tooltip.style.top  = tipY + 'px';
+        rafTip = requestAnimationFrame(lerpTip);
+      }
+
+      document.addEventListener('mousemove', e => {
+        mouseX = e.clientX + 20;
+        mouseY = e.clientY - 10;
+        const tw = tooltip.offsetWidth  || 300;
+        const th = tooltip.offsetHeight || 160;
+        if (mouseX + tw > window.innerWidth  - 12) mouseX = e.clientX - tw - 20;
+        if (mouseY + th > window.innerHeight - 12) mouseY = e.clientY - th - 10;
+      });
+
+      document.querySelectorAll('.talk-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          ttTitle.textContent   = card.dataset.title   || '';
+          ttSpeaker.textContent = card.dataset.speaker || '';
+          ttDesc.textContent    = card.dataset.desc    || '';
+          tooltip.classList.add('visible');
+          tipX = mouseX; tipY = mouseY;
+          tooltip.style.left = tipX + 'px';
+          tooltip.style.top  = tipY + 'px';
+          if (!rafTip) rafTip = requestAnimationFrame(lerpTip);
+        });
+        card.addEventListener('mouseleave', () => {
+          tooltip.classList.remove('visible');
+          cancelAnimationFrame(rafTip);
+          rafTip = null;
+        });
+      });
+    })();
+
+    /* Cookie banner */
+    (function() {
+      const banner  = document.getElementById('cookie-banner');
+      const consent = localStorage.getItem('cookie_consent');
+      if (consent) { banner.classList.add('hidden'); return; }
+      banner.classList.remove('hidden');
+      document.getElementById('cookie-accept').addEventListener('click', function() {
+        localStorage.setItem('cookie_consent', 'accepted');
+        banner.classList.add('hidden');
+        loadGA();
+      });
+      document.getElementById('cookie-decline').addEventListener('click', function() {
+        localStorage.setItem('cookie_consent', 'declined');
+        banner.classList.add('hidden');
+      });
+    })();
+  </script>
+  <script>
+  /* ── Paylogic iframe auto-height ─────────
+     The shop page runs iframe-resizer's child script (4.3.2), which reports its
+     content height as soon as the parent completes the handshake: the child
+     announces itself with "[iFrameResizerChild]Ready", we reply with a
+     colon-separated [iFrameSizer] init string, and it then posts
+     "<id>:<height>:<width>:<type>" on load, on DOM mutation and on resize.
+     Without this the iframe keeps the static height below and the shop scrolls
+     inside it as soon as the content is taller — which it is on the later steps
+     of the checkout. If Paylogic ever drops iframe-resizer, no message arrives
+     and the static height simply stays in place.
+  ───────────────────────────────────────── */
+  (function() {
+    const SHOP = 'https://shop.paylogic.com';
+    const frame = document.getElementById('paylogic_shop');
+    if (!frame) return;
+
+    /* Touch devices get the link instead (see .shop-link), so drop the iframe
+       rather than make a phone download a checkout it cannot use. */
+    if (window.matchMedia('(pointer: coarse)').matches) {
+      frame.remove();
+      return;
+    }
+
+    window.addEventListener('message', function(e) {
+      if (e.origin !== SHOP || typeof e.data !== 'string') return;
+
+      if (e.data === '[iFrameResizerChild]Ready') {
+        /* id : bodyMarginV1 : sizeWidth : log : interval : enablePublicMethods :
+           autoResize : bodyMargin : heightCalculationMethod : bodyBackground :
+           bodyPadding : tolerance : inPageLinks : resizeFrom :
+           widthCalculationMethod : mouseEvents : offsetSize */
+        frame.contentWindow.postMessage('[iFrameSizer]paylogic_shop:0:false:false:32:' +
+          'false:true:0:bodyOffset:transparent:0:0:false:child:scroll:false:0', SHOP);
+        return;
+      }
+
+      if (e.data.indexOf('[iFrameSizer]paylogic_shop:') !== 0) return;
+      const parts = e.data.slice('[iFrameSizer]'.length).split(':');
+      const height = parseInt(parts[1], 10);
+      /* 'reset' carries no usable height; bodyOffset does not measure the
+         iframe itself, so it never needs the reset round-trip. */
+      if (parts[3] === 'reset' || !(height > 200)) return;
+      frame.style.height = height + 'px';
+    });
+  })();
+  </script>
+</body>
+</html>
