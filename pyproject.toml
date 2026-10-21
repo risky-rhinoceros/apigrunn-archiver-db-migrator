@@ -1,37 +1,43 @@
 [project]
 name = "apigrunn-archiver-db-migrator"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Migrate an apigrunn-archiver 0.1.0 archive (schema 1 or 2) to the 0.2.0 format (schema 3)."
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
 authors = [{ email = "jaap@evoso.nl" }]
 keywords = ["apigrunn", "aigrunn", "archive", "migration", "sqlite"]
-dependencies = ["apigrunn-archiver"]
+# None: the script uses only the standard library.
+dependencies = []
 
 [project.scripts]
-apigrunn-archiver-db-migrator = "apigrunn_archiver_db_migrator.cli:main"
+apigrunn-archiver-db-migrator = "apigrunn_archiver_db_migrator:main"
 
-# Pinned to 0.2.0: the migration writes that version's schema 3 and refuses
-# to run against any other (see migration.TARGET_SCHEMA).
+# Only the tests need apigrunn-archiver: they check the copy of 0.2.0 inside
+# the script against the real thing. Pinned to the 0.2.0 commit it was copied
+# from; tests/test_equivalence.py fails if the pin and the copy disagree.
 [tool.uv.sources]
 apigrunn-archiver = { git = "https://github.com/evoso-software/apigrunn-archiver", rev = "5888f951f9fc933ef4901e6db525f1830d6231f5" }
 
 [dependency-groups]
-dev = ["pytest>=8.0"]
+dev = ["pytest>=8.0", "apigrunn-archiver"]
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+[tool.hatch.version]
+path = "apigrunn_archiver_db_migrator.py"
+
 [tool.hatch.build.targets.wheel]
-packages = ["src/apigrunn_archiver_db_migrator"]
+only-include = ["apigrunn_archiver_db_migrator.py"]
 
 [tool.hatch.metadata]
 allow-direct-references = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["."]
 
 [tool.ruff]
 line-length = 100

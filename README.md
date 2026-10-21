@@ -16,19 +16,25 @@ nothing.
 
 ## Usage
 
+The migrator is one file, `apigrunn_archiver_db_migrator.py`, with no dependencies:
+any Python 3.11 or newer runs it. Download it and run it; nothing to install.
+
 ```bash
-apigrunn-archiver-db-migrator --dry-run                 # migrate and verify, keep nothing
-apigrunn-archiver-db-migrator -o archive-v3.db          # write a new file next to it
-apigrunn-archiver-db-migrator --in-place                # replace it, keep the original
-apigrunn-archiver-db-migrator old.db -o new.db          # any other archive
+python3 apigrunn_archiver_db_migrator.py --dry-run          # migrate and verify, keep nothing
+python3 apigrunn_archiver_db_migrator.py -o archive-v3.db   # write a new file next to it
+python3 apigrunn_archiver_db_migrator.py --in-place         # replace it, keep the original
+python3 apigrunn_archiver_db_migrator.py old.db -o new.db   # any other archive
 ```
+
+Installed as a package (`pip install .`, `uv tool install .`) the same thing is the
+`apigrunn-archiver-db-migrator` command.
 
 The source defaults to the archiver's own (`$APIGRUNN_ARCHIVE`, else
 `$XDG_DATA_HOME/apigrunn-archiver/archive.db`). Exactly one of `-o`, `--in-place` or
 `--dry-run` is required.
 
 ```
-$ apigrunn-archiver-db-migrator --in-place
+$ python3 apigrunn_archiver_db_migrator.py --in-place
 migrated ~/.local/share/apigrunn-archiver/archive.db (schema 2, apigrunn-archiver 0.1.0)
       to ~/.local/share/apigrunn-archiver/archive.db (schema 3, apigrunn-archiver 0.2.0)
   2 runs, 16 snapshots, 8 blobs
@@ -56,7 +62,7 @@ If the migrator crashes (exit code 3), it can send an anonymous bug report. It i
 - Otherwise it shows the exact report and asks, but only when run in a terminal.
   In scripts and CI nothing is sent.
 
-A report holds the migrator's and apigrunn-archiver's versions, the Python version,
+A report holds the migrator's version and the archiver version it targets, the Python version,
 OS and CPU architecture, the mode (`output`, `in-place` or `dry-run`), the exception's
 type, and the module, function and line number of each frame of its traceback. It
 never holds the exception's message, file paths, URLs or anything read from an
@@ -83,10 +89,16 @@ archive. Refusals and failed verifications are not bugs and are never reported.
 | `snapshots.blob_sha256`           | also becomes `body_sha256`, so every snapshot is exact  |
 | `parsed_pages`, `talk_cards`      | not converted: the index is rebuilt by 0.2.0's parser   |
 
-The schema is created by the installed apigrunn-archiver itself and the talk index
-is rebuilt with its own `ensure_index`. That way every hash in it is computed by the
-code that later checks it. If the source has a 0.1.0 index (schema 2), it is compared
-with the rebuilt one, and any page where they disagree is reported as a warning.
+The talk index is rebuilt from the stored HTML, not converted. If the source has a
+0.1.0 index (schema 2), it is compared with the rebuilt one, and any page where they
+disagree is reported as a warning.
+
+To do that without installing apigrunn-archiver, the script carries a copy of the parts
+of 0.2.0 it needs: the schema, the hashes the index is keyed by, and the talk parser.
+0.2.0 parses with BeautifulSoup; the copy rebuilds the same tree on the standard
+library's `HTMLParser`, the tokenizer BeautifulSoup's `html.parser` builder uses too.
+The tests hold that copy to the real 0.2.0 (see [Development](#development)), so the
+archive comes out as if 0.2.0 had built its index itself.
 
 Things that behave differently after migrating:
 
@@ -111,6 +123,15 @@ The tests use a copy of a real 0.1.0 archive (`tests/fixtures/archive_v0.1.0.db`
 They also build 0.1.0 archives with `tests/legacy.py`, which copies 0.1.0's schema and
 write path, to cover errors, 304s, noise, unparseable pages and refusals.
 
-apigrunn-archiver is pinned to the 0.2.0 commit in `pyproject.toml`. The migrator refuses
-to run against an archiver whose schema is not 3, so bumping the pin to a version with
-another schema needs a new migration step, not just a new pin.
+apigrunn-archiver is a development dependency only, pinned to the 0.2.0 commit the
+script's copy was taken from. `tests/test_equivalence.py` checks the copy against it:
+
+- the pin itself, the schema both create, and `default_db_path`;
+- whole migrations: 0.2.0's own `ensure_index` rebuilds each migrated archive's index,
+  which must match the script's in every table, row for row;
+- the parser, card for card: on the real pages, on hand-picked edge cases (entities,
+  character references, unclosed and stray tags, comments, CDATA, `<script>`,
+  `<template>`, nesting), and on thousands of generated and mutated pages.
+
+Do not bump the pin without a reason: a 0.2.x with another schema or parser needs the
+copy updated and a new migration step, and these tests will say so.

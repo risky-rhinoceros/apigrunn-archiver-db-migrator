@@ -9,10 +9,10 @@ import pytest
 from apigrunn_archiver import Archiver, Store
 from apigrunn_archiver.targets import track_url
 
+import apigrunn_archiver_db_migrator as migrator
 from apigrunn_archiver_db_migrator import (
     OutputExistsError,
     SourceError,
-    UnsupportedArchiverError,
     VerificationError,
     backup_path,
     dry_run,
@@ -20,7 +20,6 @@ from apigrunn_archiver_db_migrator import (
     migrate_in_place,
     source_schema,
 )
-from apigrunn_archiver_db_migrator import migration as migrate_module
 
 from .conftest import add_noise, edit_cards, file_sha, first_video_id, fixture_bytes
 from .legacy import LegacyArchive
@@ -249,7 +248,7 @@ def test_without_hard_links_files_are_copied(real_archive, output, monkeypatch):
     def no_links(src, dst):
         raise OSError("hard links not supported")
 
-    monkeypatch.setattr(migrate_module.os, "link", no_links)
+    monkeypatch.setattr(migrator.os, "link", no_links)
     before = file_sha(real_archive)
     migrate(real_archive, output)
     result = migrate_in_place(real_archive)
@@ -336,12 +335,6 @@ def test_incomplete_schema_is_refused(tmp_path, output):
         migrate(legacy.path, output)
 
 
-def test_other_archiver_schema_is_refused(real_archive, output, monkeypatch):
-    monkeypatch.setattr(migrate_module, "SCHEMA_VERSION", 4)
-    with pytest.raises(UnsupportedArchiverError, match=r"MIGRATOR-E400"):
-        migrate(real_archive, output)
-
-
 # ---------------------------------------------------------- verification
 
 
@@ -359,7 +352,7 @@ def test_damaged_source_blob_fails_verification(legacy, output):
 
 
 def test_failed_verification_leaves_nothing_behind(real_archive, output, monkeypatch):
-    monkeypatch.setattr(migrate_module, "_verify", lambda *args: ["boom"])
+    monkeypatch.setattr(migrator, "_verify", lambda *args: ["boom"])
     before = file_sha(real_archive)
 
     with pytest.raises(VerificationError, match=r"boom"):

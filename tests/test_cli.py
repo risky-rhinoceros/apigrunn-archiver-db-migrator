@@ -2,9 +2,8 @@ from __future__ import annotations
 
 import pytest
 
-from apigrunn_archiver_db_migrator import migration as migrate_module
-from apigrunn_archiver_db_migrator import source_schema
-from apigrunn_archiver_db_migrator.cli import main
+import apigrunn_archiver_db_migrator as migrator
+from apigrunn_archiver_db_migrator import main, source_schema
 
 from .conftest import fixture_bytes
 
@@ -64,7 +63,7 @@ def test_missing_output_directory_exits_2(real_archive, tmp_path, capsys):
 
 
 def test_failed_verification_exits_1(real_archive, output, monkeypatch, capsys):
-    monkeypatch.setattr(migrate_module, "_verify", lambda *args: ["boom"])
+    monkeypatch.setattr(migrator, "_verify", lambda *args: ["boom"])
     assert main([str(real_archive), "-o", str(output)]) == 1
     err = capsys.readouterr().err
     assert "[MIGRATOR-E300]" in err and "- boom" in err

@@ -30,22 +30,21 @@ dependencies = [
 
 [[package]]
 name = "apigrunn-archiver-db-migrator"
-version = "0.1.0"
 source = { editable = "." }
-dependencies = [
-    { name = "apigrunn-archiver" },
-]
 
 [package.dev-dependencies]
 dev = [
+    { name = "apigrunn-archiver" },
     { name = "pytest" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "apigrunn-archiver", git = "https://github.com/evoso-software/apigrunn-archiver?rev=5888f951f9fc933ef4901e6db525f1830d6231f5" }]
 
 [package.metadata.requires-dev]
-dev = [{ name = "pytest", specifier = ">=8.0" }]
+dev = [
+    { name = "apigrunn-archiver", git = "https://github.com/evoso-software/apigrunn-archiver?rev=5888f951f9fc933ef4901e6db525f1830d6231f5" },
+    { name = "pytest", specifier = ">=8.0" },
+]
 
 [[package]]
 name = "beautifulsoup4"
